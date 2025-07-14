@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel & Tour Sign-Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            min-width: 100vw;
+            display: flex;
+            align-items: center;      /* Center vertically */
+            justify-content: center;  /* Center horizontally */
+            background-color: #f3f4f6;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: auto;
+            width: 100%;
+            max-width: 900px;         /* Set your desired max width */
+        }
+        .form-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Image/steps and form */
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        @media (max-width: 900px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .form-step {
+            display: none;
+        }
+        .form-step-active {
+            display: block;
+        }
+        .step {
+            transition: background-color 0.3s ease;
+        }
+        .step-active {
+            background-color: #3B82F6;
+            color: white;
+        }
+        .step-completed {
+            background-color: #16A34A;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div class="md:flex">
+                <!-- Left Side: Image and Progress -->
+                <div class="bg-cover bg-center p-8 text-white" style="background-image: url('Sign up.jpg');">
+                    <div class="bg-black bg-opacity-50 rounded-xl p-6">
+                      <h2 class="text-3xl font-bold mb-6">
+                        <span class="text-blue-600 font-bold">De’Coasta</span>
+                        <span class="text-black font-bold"> – Travel Made Easy. Just Click, Pack & Go!</span>
+                      </h2>
+                      <p class="mb-8 text-gray-200">
+                        <span class="text-teal-300 font-semibold">Wɔbɛkɔ anaa?</span> Just a few clicks and your trip go be set! 
+                        <span class="text-yellow-300">Book now, no yawa!</span>
+                      </p>
+                      <!-- Progress Steps -->
+                      <div id="step-indicators" class="space-y-4">
+                          <div id="step-indicator-1" class="step step-active flex items-center p-3 rounded-lg">
+                              <div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center mr-4">1</div>
+                              <span class="font-semibold">Personal Info</span>
+                          </div>
+                          <div id="step-indicator-2" class="step flex items-center p-3 rounded-lg">
+                              <div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center mr-4">2</div>
+                              <span class="font-semibold">Tour Details</span>
+                          </div>
+                          <div id="step-indicator-3" class="step flex items-center p-3 rounded-lg">
+                              <div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center mr-4">3</div>
+                              <span class="font-semibold">Payment</span>
+                          </div>
+                          <div id="step-indicator-4" class="step flex items-center p-3 rounded-lg">
+                              <div class="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center mr-4">4</div>
+                              <span class="font-semibold">Confirmation</span>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Form -->
+                <div class="p-8 sm:p-12 bg-gray-900 text-gray-100">
+                    <form id="signup-form">
+                        <!-- Step 1: Personal Information -->
+                        <div id="step-1" class="form-step form-step-active">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-6">Your Details</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-gray-200">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-gray-200">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <label for="email" class="block text-sm font-medium text-gray-200">Email Address</label>
+                                <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                            </div>
+                            <div class="mt-6">
+                                <label for="phone" class="block text-sm font-medium text-gray-200">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                            </div>
+                            <div class="mt-8 text-right">
+                                <button type="button" class="next-btn bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-colors shadow-md">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Tour Selection -->
+                        <div id="step-2" class="form-step">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-6">Choose Your Adventure</h3>
+                            <div>
+                                <label for="destination" class="block text-sm font-medium text-gray-200">Destination</label>
+                                <select id="destination" name="destination" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                    <option>Accra, Kumasi - GHC250</option>
+                                    <option>Kumasi, Accra - GHC250</option>
+                                    <option>Accra, Techiman - GHC320</option>
+                                    <option>Accra, Ho - GHC350</option>
+                                    <option>Accra, Cape Coast - GHC300</option>
+                                    <option>Accra, Tamale - GHC300</option>
+                                    <option>Tamale, Accra - GHC350</option> 
+                                    <option>Cape Coast, Kumasi - GHC500</option>
+                                    <option>Ho, Kumasi - GHC300</option>  
+                                    <option>Tamale, Techiman - GHC300</option>
+                                    <option>Tamale, Cape Coast - GHC300</option>  
+                                    <option>Kumasi, Ho - GHC350</option>
+                                    <option>Kumasi, Tamale - GHC350</option>
+                                </select>
+                            </div>
+                            <div class="mt-6">
+                                <label for="travelDate" class="block text-sm font-medium text-gray-200">Travel Date</label>
+                                <input type="date" id="travelDate" name="travelDate" required class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                            </div>
+                            <div class="mt-6">
+                                <label for="travelers" class="block text-sm font-medium text-gray-200">Number of Travelers</label>
+                                <input type="number" id="travelers" name="travelers" min="1" value="1" required class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                            </div>
+                            <div class="mt-8 flex justify-between">
+                                <button type="button" class="prev-btn bg-gray-700 text-gray-100 font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors shadow-md">Previous</button>
+                                <button type="button" class="next-btn bg-yellow-400 text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-colors shadow-md">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Payment Information -->
+                        <div id="step-3" class="form-step">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-6">Secure Payment</h3>
+                            <!-- Payment Method Selection -->
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-200 mb-2">Select Payment Method</label>
+                                <div class="flex items-center space-x-6">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="paymentMethod" value="card" class="h-4 w-4 text-blue-600 border-gray-700 focus:ring-yellow-400" checked>
+                                        <span class="ml-2 text-gray-200">Debit Card</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="paymentMethod" value="momo" class="h-4 w-4 text-blue-600 border-gray-700 focus:ring-yellow-400">
+                                        <span class="ml-2 text-gray-200">Mobile Money</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Debit Card Form -->
+                            <div id="card-payment-form">
+                                <div>
+                                    <label for="cardName" class="block text-sm font-medium text-gray-200">Name on Card</label>
+                                    <input type="text" id="cardName" name="cardName" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                </div>
+                                <div class="mt-6">
+                                    <label for="cardNumber" class="block text-sm font-medium text-gray-200">Card Number</label>
+                                    <input type="text" id="cardNumber" name="cardNumber" placeholder="0000 0000 0000 0000" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                                    <div>
+                                        <label for="expiryDate" class="block text-sm font-medium text-gray-200">Expiry Date</label>
+                                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                    </div>
+                                    <div>
+                                        <label for="cvv" class="block text-sm font-medium text-gray-200">CVV</label>
+                                        <input type="text" id="cvv" name="cvv" placeholder="123" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Money Form -->
+                            <div id="momo-payment-form" class="hidden">
+                                <div>
+                                    <label for="momoProvider" class="block text-sm font-medium text-gray-200">Provider</label>
+                                    <select id="momoProvider" name="momoProvider" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                        <option value="" disabled selected>Select a provider</option>
+                                        <option value="mtn">MTN</option>
+                                        <option value="telecel">Telecel</option>
+                                        <option value="at">AT (AirtelTigo)</option>
+                                    </select>
+                                </div>
+                                <div class="mt-6">
+                                    <label for="momoNumber" class="block text-sm font-medium text-gray-200">Mobile Money Number</label>
+                                    <input type="tel" id="momoNumber" name="momoNumber" placeholder="e.g., 024xxxxxxx" class="mt-1 block w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-yellow-400 focus:border-yellow-400">
+                                </div>
+                            </div>
+
+                            <div class="mt-8 flex justify-between">
+                                <button type="button" class="prev-btn bg-gray-700 text-gray-100 font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors shadow-md">Previous</button>
+                                <button type="button" id="pay-btn" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition-colors shadow-md">Proceed to Pay</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: OTP Verification -->
+                        <div id="step-4" class="form-step">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-4">Verify Your Payment</h3>
+                            <p class="text-gray-200 mb-6">An OTP has been sent to your registered mobile number. Please enter it below.</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <input type="text" maxlength="1" class="otp-input w-12 h-14 text-center text-2xl font-bold bg-gray-800 text-yellow-400 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <input type="text" maxlength="1" class="otp-input w-12 h-14 text-center text-2xl font-bold bg-gray-800 text-yellow-400 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <input type="text" maxlength="1" class="otp-input w-12 h-14 text-center text-2xl font-bold bg-gray-800 text-yellow-400 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <input type="text" maxlength="1" class="otp-input w-12 h-14 text-center text-2xl font-bold bg-gray-800 text-yellow-400 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <input type="text" maxlength="1" class="otp-input w-12 h-14 text-center text-2xl font-bold bg-gray-800 text-yellow-400 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <input type="text" maxlength="1" class="otp-input w-12 h-14 text-center text-2xl font-bold bg-gray-800 text-yellow-400 border border-gray-700 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                            </div>
+                            <div class="text-center text-sm text-gray-400 mb-6">
+                                Didn't receive the code? <a href="#" class="text-blue-400 hover:underline">Resend OTP</a> in <span id="otp-timer">60</span>s
+                            </div>
+                            <div class="mt-8 text-center">
+                                <button type="button" id="verify-otp-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors shadow-md">Verify & Book</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Success Message -->
+                        <div id="step-5" class="form-step text-center">
+                            <svg class="w-24 h-24 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h3 class="text-2xl font-bold text-black mt-4 mb-2">Booking Confirmed!</h3>
+                            <p class="text-gray-200 font-semibold">Medase for booking with De’Coasta!</p>
+                            <p class="text-gray-200">Check your email for your travel details.</p>
+                            <p class="text-yellow-300 mt-2 font-semibold">Have a great trip — yɛbɔ wo nkɔsoɔ!</p>
+                        </div>
+<script src="instant-booking.js"></script>
+</body> 
+</html>

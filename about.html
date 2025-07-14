@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - De'Costa Travel</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --primary-color: #0376c1;
+            --primary-color-dark: #002954;
+            --text-dark: #12110f;
+            --text-light: #6b7280;
+            --extra-light: #fbf7f6;
+            --white: #ffffff;
+            --max-width: 1200px;
+            --header-font: "Merriweather", serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            background-color: var(--extra-light);
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section__container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 5rem 1rem;
+        }
+
+        .section__header {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: var(--header-font);
+            color: var(--primary-color-dark);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section__subheader {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            margin-bottom: 4rem;
+            font-family: var(--header-font);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            font-size: 1rem;
+            color: var(--white);
+            background-color: var(--primary-color);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: var(--extra-light);
+            z-index: 999;
+            border-bottom: 1px solid var(--text-light);
+        }
+
+        .nav__header {
+            max-width: var(--max-width);
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        .nav__menu__btn {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav__links li {
+            position: relative;
+        }
+
+        .nav__links a {
+            font-family: var(--header-font);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .nav__links a:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #ffffff, #f0faff);
+            border: 1px solid #ddd;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 999;
+            min-width: 240px;
+            border-radius: 10px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .nav__links li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li {
+            margin: 0.6rem 0;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1rem;
+            font-family: var(--header-font);
+            color: var(--text-dark);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .dropdown a:hover {
+            background-color: rgba(3, 118, 193, 0.1);
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section for About Page */
+        .about__hero {
+            margin-top: 80px; /* Adjust for fixed nav */
+            padding: 6rem 1rem;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Slime.jpg"); /* Modern hero image */
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about__hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: var(--header-font);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .about__hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* About Page Content Sections */
+        .story__section,
+        .mission__section,
+        .values__section,
+        .team__section {
+            padding: 4rem 1rem;
+        }
+
+        .story__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .story__content h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: var(--header-font);
+            color: var(--primary-color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .story__content p {
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .story__image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission__section .section__subheader,
+        .values__section .section__subheader,
+        .team__section .section__subheader {
+            margin-bottom: 2rem;
+        }
+
+        .mission__content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .mission__box {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center; /* Center content for mission box */
+        }
+        .mission__box h4 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: var(--header-font);
+        }
+        .mission__box p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+
+        .values__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value__card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value__card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .value__card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .value__card h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color-dark);
+            margin-bottom: 0.8rem;
+            font-family: var(--header-font);
+        }
+
+        .value__card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .team__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team__member {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .team__member img {
+            width: 100%;
+            height: 250px; /* Consistent image height */
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .team__member:hover img {
+            filter: grayscale(0%);
+        }
+
+        .team__info {
+            padding: 1.5rem 1rem;
+        }
+
+        .team__info h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color-dark);
+            margin-bottom: 0.5rem;
+            font-family: var(--header-font);
+        }
+
+        .team__info p {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+
+        footer.footer {
+            background-color: var(--white);
+            padding: 3rem 1rem 1rem;
+            border-top: 1px solid var(--text-light);
+            margin-top: auto;
+        }
+
+        .footer__container {
+            display: grid;
+            gap: 4rem 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            max-width: var(--max-width);
+            margin: auto;
+        }
+
+        .footer__col p {
+            margin-block: 1rem;
+            font-family: var(--header-font);
+            color: var(--text-light);
+            line-height: 1.5rem;
+        }
+
+        .footer__col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer__socials a {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            transition: transform 0.3s;
+        }
+
+        .footer__socials a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .footer__links a {
+            font-family: var(--header-font);
+            color: var(--text-light);
+            transition: 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer__links a:hover {
+            color: var(--primary-color);
+            background-color: #f0f8ff;
+            padding-left: 0.5rem;
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .footer__bar {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+                flex-direction: column;
+                background-color: var(--white);
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                padding: 1rem;
+                border-bottom: 1px solid var(--text-light);
+            }
+
+            .nav__links.open {
+                display: flex;
+            }
+
+            .nav__menu__btn {
+                display: block;
+            }
+
+            .about__hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .story__container {
+                grid-template-columns: 1fr;
+            }
+
+            .mission__content {
+                grid-template-columns: 1fr; /* Stack mission boxes on small screens */
+            }
+
+            .values__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav__header">
+            <div class="nav__logo">
+                <a href="index.html" class="logo">De'Costa <span>Travel</span></a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="services.html">Services <i class="ri-arrow-down-s-line"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="services.html#city-travel"><i class="ri-bus-2-line"></i> City Travel</a></li>
+                        <li><a href="services.html#daily-shuttles"><i class="ri-road-map-line"></i> Daily Shuttles</a></li>
+                        <li><a href="services.html#private-hire"><i class="ri-car-line"></i> Private Car Hire</a></li>
+                        <li><a href="services.html#cultural-tours"><i class="ri-landscape-line"></i> Cultural Tours</a></li>
+                        <li><a href="services.html#event-transport"><i class="ri-calendar-event-line"></i> Event Transport</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About</a></li> <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="about__hero">
+        <div class="section__container">
+            <h1>Our Story, Our Passion</h1>
+            <p>
+                From the vibrant coast of Ghana, we bring you experiences that connect, inspire, and last a lifetime.
+            </p>
+            <a href="#company-story" class="btn">Discover More</a>
+        </div>
+    </header>
+
+    <section class="section__container story__section" id="company-story">
+        <h2 class="section__header">Our Journey So Far</h2>
+        <p class="section__subheader">
+            The name "De'Costa" means "of the coast," a name deeply rooted in
+            the history of exploration and trade that shaped Ghana.
+        </p>
+        <div class="story__container">
+            <div class="story__content">
+                <h3>The Genesis of De'Costa Travel</h3>
+                <p>
+                    Our journey began with a simple yet profound passion: to share the profound beauty and
+                    untold stories of our homeland, from the sun-drenched beaches of
+                    the Atlantic to the ancient kingdoms of the interior. We believe that true travel is about immersion, not just sightseeing.
+                </p>
+                <p>
+                    Founded by a family with generations of history tied to Ghana's
+                    coastal towns, De'Costa Travel was born from a desire to create authentic,
+                    immersive, and unforgettable travel experiences. We are not just a
+                    tour company; we are storytellers, guides, and your trusted partners
+                    in adventure, committed to showcasing Ghana's rich heritage and warm hospitality.
+                </p>
+            </div>
+            <div class="story__image">
+                <img src="Culture.jpg" alt="Ghanaian Coastline" />
+            </div>
+        </div>
+    </section>
+
+    <section class="section__container mission__section">
+        <h2 class="section__header">Our Guiding Principles</h2>
+        <p class="section__subheader">
+            We are driven by a clear purpose and a bold vision for the future of travel in Ghana.
+        </p>
+        <div class="mission__content">
+            <div class="mission__box">
+                <h4>Our Mission</h4>
+                <p>
+                    To provide safe, seamless, and enriching transportation
+                    and tour services that connect travellers to the heart of Ghana. We
+                    believe that travel should be more than just seeing new places—it
+                    should be about creating lasting memories, forging genuine
+                    connections, and experiencing the true soul of a destination.
+                </p>
+            </div>
+            <div class="mission__box">
+                <h4>Our Vision</h4>
+                <p>
+                    To be the leading travel and tour service in Ghana, recognized for our authentic experiences,
+                    exceptional service, and commitment to sustainable tourism,
+                    showcasing Ghana as a premier destination for global adventurers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section__container values__section">
+        <h2 class="section__header">The Values That Define Us</h2>
+        <p class="section__subheader">
+            Our commitment to excellence is built upon these core principles.
+        </p>
+        <div class="values__grid">
+            <div class="value__card">
+                <i class="ri-heart-line"></i>
+                <h4>Authenticity</h4>
+                <p>We offer genuine experiences that reflect Ghana's true culture and spirit.</p>
+            </div>
+            <div class="value__card">
+                <i class="ri-award-line"></i>
+                <h4>Excellence</h4>
+                <p>We strive for the highest standards in service, safety, and customer satisfaction.</p>
+            </div>
+            <div class="value__card">
+                <i class="ri-leaf-line"></i>
+                <h4>Sustainability</h4>
+                <p>We are committed to responsible tourism that benefits local communities and preserves our heritage.</p>
+            </div>
+            <div class="value__card">
+                <i class="ri-user-smile-line"></i>
+                <h4>Customer Focus</h4>
+                <p>Your journey is our priority; we tailor experiences to your unique needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section__container team__section">
+        <h2 class="section__header">Meet Our Dedicated Team</h2>
+        <p class="section__subheader">
+            Behind every memorable journey is a team of passionate individuals.
+        </p>
+        <div class="team__grid">
+            <div class="team__member">
+                <img src="Marcel.jpg" alt="Team Member 1">
+                <div class="team__info">
+                    <h4>Angsomwine Marcel</h4>
+                    <p>Founder & CEO</p>
+                </div>
+            </div>
+            <div class="team__member">
+                <img src="Belinda.jpg" alt="Team Member 2">
+                <div class="team__info">
+                    <h4>Belinda Serwaa</h4>
+                    <p>Lead Tour Guide</p>
+                </div>
+            </div>
+            <div class="team__member">
+                <img src="Ishmael Kanyiri Longi.jpg" alt="Team Member 3">
+                <div class="team__info">
+                    <h4>Longi Kanyiri Ishmael</h4>
+                    <p>Logistics Manager</p>
+                </div>
+            </div>
+            <div class="team__member">
+                <img src="Evans Puokare.jpg" alt="Team Member 4">
+                <div class="team__info">
+                    <h4>Evans Puokare</h4>
+                    <p>Customer Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="section__container footer__container">
+            <div class="footer__col">
+                <div class="footer__logo">
+                    <a href="index.html" class="logo">De'Costa <span>Travel</span></a>
+                </div>
+                <p>Explore Ghana's best destinations, enjoy unbeatable prices, and book your perfect getaway instantly.</p>
+                <h4>CONNECT WITH US</h4>
+                <ul class="footer__socials">
+                    <li><a href="#"><i class="ri-twitter-fill"></i></a></li>
+                    <li><a href="#"><i class="ri-google-fill"></i></a></li>
+                    <li><a href="#"><i class="ri-linkedin-fill"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>QUICK LINKS</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>DESTINATIONS</h4>
+                <ul class="footer__links">
+                    <li><a href="#">Accra</a></li>
+                    <li><a href="#">Kumasi</a></li>
+                    <li><a href="#">Tamale</a></li>
+                    <li><a href="#">Ho</a></li>
+                    <li><a href="#">Techiman</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>OUR ACTIVITIES</h4>
+                <ul class="footer__links">
+                    <li><a href="#">🗺️ Tour Planning & Guiding</a></li>
+                    <li><a href="#">🎫 Event Tourism</a></li>
+                    <li><a href="#">🚐 Transportation Services</a></li>
+                    <li><a href="#">🌴 Holiday & Leisure Packages</a></li>
+                    <li><a href="#">🏛️ Cultural Tour</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bar">
+            Copyright © 2025 De'Costa Travel. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+
+        menuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
+        });
+    </script>
+</body>
+</html>

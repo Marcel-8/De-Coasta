@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs - De'Costa Travel</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --primary-color: #0376c1;
+            --primary-color-dark: #002954;
+            --text-dark: #12110f;
+            --text-light: #6b7280;
+            --extra-light: #fbf7f6;
+            --white: #ffffff;
+            --max-width: 1200px;
+            --header-font: "Merriweather", serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            background-color: var(--extra-light);
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .section__container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 5rem 1rem;
+        }
+
+        .section__header {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: var(--header-font);
+            color: var(--primary-color-dark);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section__subheader {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            margin-bottom: 4rem;
+            font-family: var(--header-font);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            font-size: 1rem;
+            color: var(--white);
+            background-color: var(--primary-color);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: var(--extra-light);
+            z-index: 999;
+            border-bottom: 1px solid var(--text-light);
+        }
+
+        .nav__header {
+            max-width: var(--max-width);
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        .nav__menu__btn {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav__links li {
+            position: relative;
+        }
+
+        .nav__links a {
+            font-family: var(--header-font);
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .nav__links a:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #ffffff, #f0faff);
+            border: 1px solid #ddd;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 999;
+            min-width: 240px;
+            border-radius: 10px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .nav__links li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li {
+            margin: 0.6rem 0;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1rem;
+            font-family: var(--header-font);
+            color: var(--text-dark);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .dropdown a:hover {
+            background-color: rgba(3, 118, 193, 0.1);
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Blogs Page Hero Section */
+        .blogs__hero {
+            margin-top: 80px; /* Adjust for fixed nav */
+            padding: 6rem 1rem;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Cultural event.jpg"); /* Placeholder blogs hero image */
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blogs__hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: var(--header-font);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blogs__hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Blog Posts Grid */
+        .blog__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .blog__card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog__card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog__image {
+            height: 220px; /* Fixed height for images */
+            overflow: hidden;
+        }
+
+        .blog__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog__card:hover .blog__image img {
+            transform: scale(1.05);
+        }
+
+        .blog__content {
+            padding: 1.5rem;
+            flex-grow: 1; /* Allows content to take up remaining space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog__meta {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .blog__content h3 {
+            font-size: 1.5rem;
+            font-family: var(--header-font);
+            color: var(--primary-color-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog__content p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1; /* Push the button to the bottom */
+        }
+
+        .blog__content .btn {
+            align-self: flex-start; /* Align button to the start */
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Pagination (Placeholder) */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .pagination a.active,
+        .pagination a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+
+        footer.footer {
+            background-color: var(--white);
+            padding: 3rem 1rem 1rem;
+            border-top: 1px solid var(--text-light);
+            margin-top: auto;
+        }
+
+        .footer__container {
+            display: grid;
+            gap: 4rem 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            max-width: var(--max-width);
+            margin: auto;
+        }
+
+        .footer__col p {
+            margin-block: 1rem;
+            font-family: var(--header-font);
+            color: var(--text-light);
+            line-height: 1.5rem;
+        }
+
+        .footer__col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer__socials a {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            transition: transform 0.3s;
+        }
+
+        .footer__socials a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .footer__links a {
+            font-family: var(--header-font);
+            color: var(--text-light);
+            transition: 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer__links a:hover {
+            color: var(--primary-color);
+            background-color: #f0f8ff;
+            padding-left: 0.5rem;
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .footer__bar {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+                flex-direction: column;
+                background-color: var(--white);
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                padding: 1rem;
+                border-bottom: 1px solid var(--text-light);
+            }
+
+            .nav__links.open {
+                display: flex;
+            }
+
+            .nav__menu__btn {
+                display: block;
+            }
+
+            .blogs__hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog__grid {
+                grid-template-columns: 1fr; /* Stack blog cards on small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav__header">
+            <div class="nav__logo">
+                <a href="index.html" class="logo">De'Costa <span>Travel</span></a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="services.html">Services <i class="ri-arrow-down-s-line"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="services.html#city-travel"><i class="ri-bus-2-line"></i> City Travel</a></li>
+                        <li><a href="services.html#daily-shuttles"><i class="ri-road-map-line"></i> Daily Shuttles</a></li>
+                        <li><a href="services.html#private-hire"><i class="ri-car-line"></i> Private Car Hire</a></li>
+                        <li><a href="services.html#cultural-tours"><i class="ri-landscape-line"></i> Cultural Tours</a></li>
+                        <li><a href="services.html#event-transport"><i class="ri-calendar-event-line"></i> Event Transport</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blogs.html">Blogs</a></li> <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="blogs__hero">
+        <div class="section__container">
+            <h1>Travel Stories & Insights</h1>
+            <p>
+                Discover the wonders of Ghana and beyond through our inspiring travel blogs, tips, and destination guides.
+            </p>
+        </div>
+    </header>
+
+    <section class="section__container">
+        <h2 class="section__header">Latest from Our Blog</h2>
+        <p class="section__subheader">
+            Dive into our articles for travel inspiration, practical advice, and cultural highlights from Ghana.
+        </p>
+
+        <div class="blog__grid">
+            <div class="blog__card">
+                <div class="blog__image">
+                    <img src="A_trader_at_Makola_Market.webp" alt="Ghanaian Market">
+                </div>
+                <div class="blog__content">
+                    <div class="blog__meta">July 12, 2025 | By De'Costa Team</div>
+                    <h3>Exploring Accra's Vibrant Markets</h3>
+                    <p>
+                        A journey through Makola and Salaga markets, experiencing the bustling life, vibrant colors, and unique flavors of Accra.
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog__card">
+                <div class="blog__image">
+                    <img src="Kakum National Park.jpg" alt="Kakum National Park">
+                </div>
+                <div class="blog__content">
+                    <div class="blog__meta">July 8, 2025 | By Belinda Serwaa</div>
+                    <h3>Adventures in Kakum: Canopy Walk Thrills</h3>
+                    <p>
+                        Conquer your fears and walk among the treetops at Kakum National Park. A must-do for nature lovers!
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog__card">
+                <div class="blog__image">
+                    <img src="Ghanian Cuisine.jpg" alt="Ghanaian Cuisine">
+                </div>
+                <div class="blog__content">
+                    <div class="blog__meta">July 5, 2025 | By Paul Anyoka</div>
+                    <h3>A Taste of Ghana: Must-Try Dishes</h3>
+                    <p>
+                        From Jollof Rice to Kenkey and Banku, immerse yourself in the rich culinary traditions of Ghana.
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog__card">
+                <div class="blog__image">
+                    <img src="Cape-Coast-Castle-in-Ghana.jpg" alt="Cape Coast Castle">
+                </div>
+                <div class="blog__content">
+                    <div class="blog__meta">June 28, 2025 | By De'Costa Team</div>
+                    <h3>Cape Coast Castle: A Journey Through History</h3>
+                    <p>
+                        Reflect on the past and learn about the profound history of Ghana at the poignant Cape Coast Castle.
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog__card">
+                <div class="blog__image">
+                    <img src="Cultural event.jpg" alt="Ghanaian Festival">
+                </div>
+                <div class="blog__content">
+                    <div class="blog__meta">June 20, 2025 | By De'Costa Team</div>
+                    <h3>Celebrating Ghana: Top Festivals to Experience</h3>
+                    <p>
+                        Immerse yourself in the vibrant culture and traditions by attending one of Ghana's colorful festivals.
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog__card">
+                <div class="blog__image">
+                    <img src="Beach View.jpg" alt="Ghana Beaches">
+                </div>
+                <div class="blog__content">
+                    <div class="blog__meta">June 15, 2025 | By De'Costa Team</div>
+                    <h3>Ghana's Hidden Gems: Pristine Beaches to Relax</h3>
+                    <p>
+                        Unwind on the tranquil shores of Ghana's stunning beaches, perfect for a peaceful getaway.
+                    </p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">Next <i class="ri-arrow-right-line"></i></a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="section__container footer__container">
+            <div class="footer__col">
+                <div class="footer__logo">
+                    <a href="index.html" class="logo">De'Costa <span>Travel</span></a>
+                </div>
+                <p>Explore De'Costa's best destinations, enjoy unbeatable prices, and book your perfect getaway instantly.</p>
+                <h4>CONNECT WITH US</h4>
+                <ul class="footer__socials">
+                    <li><a href="#"><i class="ri-twitter-fill"></i></a></li>
+                    <li><a href="#"><i class="ri-google-fill"></i></a></li>
+                    <li><a href="#"><i class="ri-linkedin-fill"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>QUICK LINKS</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>DESTINATIONS</h4>
+                <ul class="footer__links">
+                    <li><a href="#">Accra</a></li>
+                    <li><a href="#">Kumasi</a></li>
+                    <li><a href="#">Tamale</a></li>
+                    <li><a href="#">Ho</a></li>
+                    <li><a href="#">Techiman</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>OUR ACTIVITIES</h4>
+                <ul class="footer__links">
+                    <li><a href="#">🗺️ Tour Planning & Guiding</a></li>
+                    <li><a href="#">🎫 Event Tourism</a></li>
+                    <li><a href="#">🚐 Transportation Services</a></li>
+                    <li><a href="#">🌴 Holiday & Leisure Packages</a></li>
+                    <li><a href="#">🏛️ Cultural Tour</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bar">
+            Copyright © 2025 De'Costa Travel. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+
+        menuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
+        });
+    </script>
+</body>
+</html>
